@@ -6,3 +6,4 @@ deploy/
 target/
 .classpath
 .settings/
+gwt-unitCache/
