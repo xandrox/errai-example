@@ -1,0 +1,8 @@
+classes/
+lib/
+deploy/
+.errai/
+.project
+target/
+.classpath
+.settings/
