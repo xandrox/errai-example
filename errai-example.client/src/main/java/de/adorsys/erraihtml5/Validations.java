@@ -1,6 +1,7 @@
 package de.adorsys.erraihtml5;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -24,6 +25,9 @@ public class Validations {
 	@Inject
 	Validator validator;
 	
+	@Inject
+	ErrorRenderer errorRenderer;
+	
 	public void validate(Object object, Class<?>... groups) {
 		BindableProxy<?> proxy = (BindableProxy<?>) object;
 		Set<ConstraintViolation<Object>> validate = validator.validate(proxy.unwrap(), groups);
@@ -31,10 +35,16 @@ public class Validations {
 	}
 
 	public void mapViolations(Collection<ConstraintViolation<Object>> cv, BindableProxy<?> proxy) {
+		HashSet<String> clearErrorProps = new HashSet<String>(proxy.getState().getBoundProperties());
 		for (ConstraintViolation<?> constraintViolation : cv) {
 			System.out.println(constraintViolation.getPropertyPath());
 			Widget widget = proxy.getState().getWidget(constraintViolation.getPropertyPath().toString());
-			System.out.println(widget);
+			errorRenderer.showErrror(constraintViolation, widget);
+			clearErrorProps.remove(constraintViolation.getPropertyPath().toString());
+		}
+		for (String prop : clearErrorProps) {
+			Widget widget = proxy.getState().getWidget(prop);
+			errorRenderer.removeError(widget);
 		}
 	}
 

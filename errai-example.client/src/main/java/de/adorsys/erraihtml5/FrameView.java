@@ -1,6 +1,7 @@
 package de.adorsys.erraihtml5;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
 import org.jboss.errai.ui.shared.api.annotations.DataField;
@@ -29,6 +30,10 @@ public class FrameView extends Composite {
 	@PostConstruct
 	private void displayBody() {
 		body.setWidget(savePerson);
+	}
+	
+	void onPersonSaved(@Observes PersonSaved ps) {
+		
 	}
 
 }

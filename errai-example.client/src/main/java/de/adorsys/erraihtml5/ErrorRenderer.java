@@ -8,4 +8,6 @@ public interface ErrorRenderer {
 	
 	public void showErrror(ConstraintViolation<?> constraintViolation, Widget widget);
 
+	public void removeError(Widget widget);
+
 }
