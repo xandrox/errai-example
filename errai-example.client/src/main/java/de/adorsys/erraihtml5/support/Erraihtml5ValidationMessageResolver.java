@@ -1,4 +1,4 @@
-package de.adorsys.erraihtml5;
+package de.adorsys.erraihtml5.support;
 
 import org.hibernate.validator.ValidationMessages;
 

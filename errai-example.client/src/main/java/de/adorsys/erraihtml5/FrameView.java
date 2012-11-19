@@ -10,6 +10,9 @@ import org.jboss.errai.ui.shared.api.annotations.Templated;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.SimplePanel;
 
+import de.adorsys.erraihtml5.person.PersonSaved;
+import de.adorsys.erraihtml5.person.SavePersonView;
+
 @Templated
 public class FrameView extends Composite {
 	

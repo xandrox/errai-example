@@ -1,13 +1,17 @@
 package de.adorsys.errai.example.api;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.jboss.errai.databinding.client.api.Bindable;
 
 @Bindable
 public class Person {
 
 	@NotNull
+	@NotBlank
+	@Size(min=3)
 	private String firstName;
 	private String sureName;
 	private Address address;

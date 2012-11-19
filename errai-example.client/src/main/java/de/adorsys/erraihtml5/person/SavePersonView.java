@@ -1,4 +1,4 @@
-package de.adorsys.erraihtml5;
+package de.adorsys.erraihtml5.person;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -15,6 +15,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.TextBox;
 
 import de.adorsys.errai.example.api.Person;
+import de.adorsys.erraihtml5.support.Val;
 
 @Templated
 public class SavePersonView extends Composite {
@@ -27,12 +28,13 @@ public class SavePersonView extends Composite {
 	
 	
 	@Inject
-	Validations validations;
+	Val validations;
 	
 	@Inject
 	@AutoBound
 	DataBinder<Person> dataBinder;
 	
+	@Inject
 	javax.enterprise.event.Event<PersonSaved> personSaved;
 
 	@PostConstruct

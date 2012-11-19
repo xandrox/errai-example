@@ -1,4 +1,4 @@
-package de.adorsys.erraihtml5;
+package de.adorsys.erraihtml5.support;
 
 import javax.validation.Validator;
 import javax.validation.groups.Default;
@@ -13,7 +13,7 @@ import de.adorsys.errai.example.api.Person;
 public final class Erraihtml5ValidatorFactory extends
 		AbstractGwtValidatorFactory {
 
-	@GwtValidation(value = { Calculator.class, Person.class }, groups = { Default.class })
+	@GwtValidation(value = { Person.class }, groups = { Default.class })
 	public interface GwtValidator extends Validator {
 	}
 
