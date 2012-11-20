@@ -1,5 +1,8 @@
 package de.adorsys.erraihtml5;
 
+import java.util.List;
+import java.util.logging.Logger;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
@@ -7,6 +10,7 @@ import org.jboss.errai.bus.client.api.ErrorCallback;
 import org.jboss.errai.bus.client.api.Message;
 import org.jboss.errai.bus.client.api.RemoteCallback;
 import org.jboss.errai.bus.client.api.base.TransportIOException;
+import org.jboss.errai.databinding.client.BindableProxy;
 import org.jboss.errai.databinding.client.api.DataBinder;
 import org.jboss.errai.enterprise.client.jaxrs.api.ResponseCallback;
 import org.jboss.errai.enterprise.client.jaxrs.api.RestClient;
@@ -18,6 +22,7 @@ import org.jboss.errai.ui.shared.api.annotations.SinkNative;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
 
 import com.google.gwt.http.client.Response;
+import com.google.gwt.safehtml.shared.UriUtils;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
@@ -29,7 +34,7 @@ import de.adorsys.errai.example.api.PersonRestResource;
 
 @Templated
 public class SavePersonView extends Composite {
-	
+	static Logger LOG = Logger.getLogger("SavePersonView.java");
 	
 	@Inject
 	@DataField
@@ -62,20 +67,30 @@ public class SavePersonView extends Composite {
 		Person model = dataBinder.getModel();
 		model.setAddress(new Address());
 		System.out.println(model);
-		RestClient.setApplicationRoot("http://localhost:8080/errai-example.server/rest");
+		RestClient.setApplicationRoot(UriUtils.fromString("http://localhost:8080/errai-example.server/rest").asString());
 		RestClient.setJacksonMarshallingActive(true);
 		RemoteCallback<Person> remoteCallback = new RemoteCallback<Person>() {
 
 			@Override
 			public void callback(Person person) {
-				System.out.println("Response "+person);
+				Window.alert("Account From Server :  \n \n"+person);
+				LOG.info("Account From Server  : \n \n"+person);
+			}
+		};
+		RemoteCallback<List<Person>> personListRemoteCallBack = new RemoteCallback<List<Person>>() {
+
+			@Override
+			public void callback(List<Person> response) {
+				Window.alert("Person List From Server    :    \n \n "+response.toString());
+				LOG.info("Person List From Server    :     "+response.toString());
 			}
 		};
 		ResponseCallback responseCallback = new ResponseCallback() {
 			
 			@Override
 			public void callback(Response response) {
-				System.out.println("Response "+response.getText());
+				Window.alert("Response "+response.getText());
+				LOG.info("Response "+response.getText());
 			}
 		};
 
@@ -90,8 +105,8 @@ public class SavePersonView extends Composite {
 				return true;
 			}
 		};
-		personRestCaller.call(responseCallback, errorCallback).create(model);
-		personRestCaller.call(responseCallback,errorCallback).list();
+		personRestCaller.call(remoteCallback, errorCallback).create(model);
+		personRestCaller.call(personListRemoteCallBack,errorCallback).list();
 		PersonOperation personOperation = new PersonOperation(model, PersonOperationType.CREATE_SUCCESS);
 		
 		personSaved.fire(personOperation);

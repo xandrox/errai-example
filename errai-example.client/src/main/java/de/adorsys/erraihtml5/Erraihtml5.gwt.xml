@@ -31,7 +31,8 @@
 	<replace-with class="de.adorsys.erraihtml5.Erraihtml5ValidatorFactory">
 		<when-type-is class="javax.validation.ValidatorFactory" />
 	</replace-with>
-
+	
+	<inherits name="com.google.gwt.logging.Logging"/>
 	<replace-with
 		class="de.adorsys.erraihtml5.Erraihtml5ValidationMessageResolver">
 		<when-type-is

@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import de.adorsys.errai.example.api.Address;
 import de.adorsys.errai.example.api.Person;
 import de.adorsys.errai.example.api.PersonRestResource;
+@ApplicationScoped
 public class SimplePersonRestResourceImpl implements PersonRestResource{
 	
 	public Person create(Person person){
