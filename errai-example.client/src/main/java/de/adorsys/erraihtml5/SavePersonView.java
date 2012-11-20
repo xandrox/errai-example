@@ -32,8 +32,8 @@ public class SavePersonView extends Composite {
 	@Inject
 	@AutoBound
 	DataBinder<Person> dataBinder;
-	
-	javax.enterprise.event.Event<PersonSaved> personSaved;
+	@Inject
+	javax.enterprise.event.Event<PersonOperation> personSaved;
 
 	@PostConstruct
 	private void init() {
@@ -49,7 +49,10 @@ public class SavePersonView extends Composite {
 		Person model = dataBinder.getModel();
 		System.out.println(model);
 		
-		personSaved.fire(new PersonSaved());
+		PersonOperation personOperation = new PersonOperation(model, PersonOperationType.CREATE_SUCCESS);
+		
+		personSaved.fire(personOperation);
 //		validations.validate(model);
 	}
+	
 }

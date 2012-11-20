@@ -1,5 +1,6 @@
 package de.adorsys.erraihtml5;
 
-public class PersonSaved {
+import de.adorsys.errai.example.api.Person;
 
+public class PersonSaved { 
 }
