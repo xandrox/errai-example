@@ -23,6 +23,18 @@ public class Person {
 	@Valid
 	private Address address;
 
+	
+	public Person() {
+		super();
+	}
+
+	public Person(String firstName, String sureName, Address address) {
+		super();
+		this.firstName = firstName;
+		this.sureName = sureName;
+		this.address = address;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

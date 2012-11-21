@@ -19,6 +19,12 @@
 			<groupId>org.jboss.errai</groupId>
 			<artifactId>errai-javaee-all</artifactId>
 			<version>${errai.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.jboss.errai</groupId>
+					<artifactId>errai-jaxrs-provider</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

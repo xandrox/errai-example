@@ -1,7 +1,6 @@
 package de.adorsys.errai.example.api;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -24,6 +23,19 @@ public class Address {
 	@NotBlank
 	@Size(min=3)
 	private String city;
+	
+	
+	
+	public Address() {
+		super();
+	}
+
+	public Address(String street, String postcode, String city) {
+		super();
+		this.street = street;
+		this.postcode = postcode;
+		this.city = city;
+	}
 
 	public String getStreet() {
 		return street;

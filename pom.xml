@@ -64,6 +64,11 @@
 				<version>4.2.0.Final</version>
 				<scope>compile</scope>
 			</dependency>
+			<dependency>
+				<groupId>javax.enterprise</groupId>
+				<artifactId>cdi-api</artifactId>
+				<version>1.0-SP1</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<repositories>
