@@ -8,6 +8,19 @@ public class Address {
 	private String street;
 	private String postcode;
 	private String city;
+	
+	
+	
+	public Address() {
+		super();
+	}
+
+	public Address(String street, String postcode, String city) {
+		super();
+		this.street = street;
+		this.postcode = postcode;
+		this.city = city;
+	}
 
 	public String getStreet() {
 		return street;
