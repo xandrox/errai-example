@@ -6,3 +6,4 @@ deploy/
 target/
 .classpath
 .settings/
+errai-example.client/src/main/gwt-unitCache/

@@ -1,12 +1,28 @@
 package de.adorsys.errai.example.api;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 import org.jboss.errai.databinding.client.api.Bindable;
 
 @Bindable
 public class Address {
 
+	@NotNull
+	@NotBlank
+	@Size(min=3)
 	private String street;
+	
+	@NotNull
+	@NotBlank
+	@Size(min=3)
 	private String postcode;
+	
+	@NotNull
+	@NotBlank
+	@Size(min=3)
 	private String city;
 
 	public String getStreet() {

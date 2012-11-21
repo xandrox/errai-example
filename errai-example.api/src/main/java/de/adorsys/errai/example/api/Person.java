@@ -1,5 +1,6 @@
 package de.adorsys.errai.example.api;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -13,7 +14,13 @@ public class Person {
 	@NotBlank
 	@Size(min=3)
 	private String firstName;
+	
+	@NotNull
+	@NotBlank
+	@Size(min=3)
 	private String sureName;
+	
+	@Valid
 	private Address address;
 
 	public String getFirstName() {

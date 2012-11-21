@@ -5,6 +5,7 @@ import javax.inject.Inject;
 
 import org.jboss.errai.databinding.client.api.DataBinder;
 import org.jboss.errai.ui.shared.api.annotations.AutoBound;
+import org.jboss.errai.ui.shared.api.annotations.Bound;
 import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.EventHandler;
 import org.jboss.errai.ui.shared.api.annotations.SinkNative;
@@ -20,12 +21,15 @@ import de.adorsys.erraihtml5.support.Val;
 @Templated
 public class SavePersonView extends Composite {
 	
+	@Inject
+	@DataField
+	@Bound
+	TextBox firstName;
 	
 	@Inject
 	@DataField
-	@org.jboss.errai.ui.shared.api.annotations.Bound
-	TextBox firstName;
-	
+	@Bound
+	TextBox sureName;
 	
 	@Inject
 	Val validations;
