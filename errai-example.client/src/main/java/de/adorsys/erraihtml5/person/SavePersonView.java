@@ -15,6 +15,7 @@ import org.jboss.errai.enterprise.client.jaxrs.api.ResponseCallback;
 import org.jboss.errai.enterprise.client.jaxrs.api.RestClient;
 import org.jboss.errai.ioc.client.api.Caller;
 import org.jboss.errai.ui.shared.api.annotations.AutoBound;
+import org.jboss.errai.ui.shared.api.annotations.Bound;
 import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.EventHandler;
 import org.jboss.errai.ui.shared.api.annotations.SinkNative;
@@ -40,9 +41,13 @@ public class SavePersonView extends Composite {
 	
 	@Inject
 	@DataField
-	@org.jboss.errai.ui.shared.api.annotations.Bound
+	@Bound
 	TextBox firstName;
 	
+	@Inject
+	@DataField
+	@Bound
+	TextBox sureName;
 	
 	@Inject
 	Val validations;
