@@ -28,12 +28,12 @@
 
 	<source path='' />
 
-	<replace-with class="de.adorsys.erraihtml5.Erraihtml5ValidatorFactory">
+	<replace-with class="de.adorsys.erraihtml5.support.Erraihtml5ValidatorFactory">
 		<when-type-is class="javax.validation.ValidatorFactory" />
 	</replace-with>
 
 	<replace-with
-		class="de.adorsys.erraihtml5.Erraihtml5ValidationMessageResolver">
+		class="de.adorsys.erraihtml5.support.Erraihtml5ValidationMessageResolver">
 		<when-type-is
 			class="com.google.gwt.validation.client.ProviderValidationMessageResolver" />
 	</replace-with>
