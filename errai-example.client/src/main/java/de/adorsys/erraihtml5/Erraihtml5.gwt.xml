@@ -7,17 +7,19 @@
 	<set-configuration-property name="devModeRedirectEnabled"
 		value="true" />
 	<set-property name="compiler.useSourceMaps" value="true" />
-	
-	<inherits name="de.adorsys.errai.example.api.API"/>
+
+	<inherits name="de.adorsys.errai.example.api.API" />
 
 	<inherits name="org.jboss.errai.common.ErraiCommon" />
 	<inherits name="org.jboss.errai.bus.ErraiBus" />
 	<inherits name="org.jboss.errai.ioc.Container" />
 	<inherits name="org.jboss.errai.enterprise.CDI" />
-	<inherits name="org.jboss.errai.databinding.DataBinding"/>
-	<inherits name="org.jboss.errai.enterprise.Jaxrs"/>
+	<inherits name="org.jboss.errai.databinding.DataBinding" />
+	<inherits name="org.jboss.errai.enterprise.Jaxrs" />
 	<inherits name="org.jboss.errai.ui.UI" />
-	
+
+	<inherits name="org.jboss.errai.jpa.JPA" />
+
 	<inherits name="com.google.gwt.validation.Validation" />
 
 	<inherits name='org.hibernate.validator.HibernateValidator' />
@@ -28,11 +30,12 @@
 
 	<source path='' />
 
-	<replace-with class="de.adorsys.erraihtml5.support.Erraihtml5ValidatorFactory">
+	<replace-with
+		class="de.adorsys.erraihtml5.support.Erraihtml5ValidatorFactory">
 		<when-type-is class="javax.validation.ValidatorFactory" />
 	</replace-with>
-	
-	<inherits name="com.google.gwt.logging.Logging"/>
+
+	<inherits name="com.google.gwt.logging.Logging" />
 	<replace-with
 		class="de.adorsys.erraihtml5.support.Erraihtml5ValidationMessageResolver">
 		<when-type-is

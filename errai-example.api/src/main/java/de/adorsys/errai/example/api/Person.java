@@ -1,5 +1,14 @@
 package de.adorsys.errai.example.api;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Version;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -8,22 +17,32 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.jboss.errai.databinding.client.api.Bindable;
 
 @Bindable
+@Entity
 public class Person {
 
+	@Id
+	private @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
+	Long id = null;
+	
+	@Version
+	private @Column(name = "version")
+	int version = 0;
+
 	@NotNull
 	@NotBlank
-	@Size(min=3)
+	@Size(min = 3)
 	private String firstName;
-	
+
 	@NotNull
 	@NotBlank
-	@Size(min=3)
+	@Size(min = 3)
 	private String sureName;
-	
+
 	@Valid
+	@ManyToOne(cascade={CascadeType.ALL})
 	private Address address;
 
-	
 	public Person() {
 		super();
 	}
@@ -33,6 +52,35 @@ public class Person {
 		this.firstName = firstName;
 		this.sureName = sureName;
 		this.address = address;
+	}
+	
+	
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the version
+	 */
+	public int getVersion() {
+		return version;
+	}
+
+	/**
+	 * @param version the version to set
+	 */
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public String getFirstName() {
@@ -64,5 +112,5 @@ public class Person {
 		return "Person [firstName=" + firstName + ", sureName=" + sureName
 				+ ", address=" + address + "]";
 	}
-	
+
 }

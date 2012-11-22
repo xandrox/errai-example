@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 
 import org.jboss.errai.bus.client.api.ErrorCallback;
 import org.jboss.errai.bus.client.api.Message;
@@ -58,6 +59,8 @@ public class SavePersonView extends Composite {
 	@Inject
 	javax.enterprise.event.Event<PersonOperation> personSaved;
 	
+	@Inject 
+	EntityManager browserEm;
 	@Inject
 	Caller<PersonRestResource> personRestCaller ;
 	@PostConstruct
@@ -72,6 +75,16 @@ public class SavePersonView extends Composite {
 		if(!hasSuccessed) return ;
 		System.out.println(firstName.getValue());
 		Person model = dataBinder.getModel();
+		model.setAddress(new Address("Raphal- Angel","303","sky"));
+		//it make sens to save it on local first
+		saveItLocal(model);
+		//and send it to the server.
+		processRestCall(model);
+		PersonOperation personOperation = new PersonOperation(model, PersonOperationType.CREATE_SUCCESS);
+		personSaved.fire(personOperation);
+	}
+
+	private void processRestCall(Person model) {
 		model.setAddress(new Address());
 		System.out.println(model);
 		RestClient.setApplicationRoot(UriUtils.fromString("http://localhost:8080/errai-example.server/rest").asString());
@@ -115,9 +128,10 @@ public class SavePersonView extends Composite {
 		};
 		personRestCaller.call(remoteCallback, errorCallback).create(model);
 		personRestCaller.call(personListRemoteCallBack,errorCallback).list();
-		PersonOperation personOperation = new PersonOperation(model, PersonOperationType.CREATE_SUCCESS);
-		
-		personSaved.fire(personOperation);
+	}
+	private void saveItLocal(Person model){
+		browserEm.persist(model);
+		LOG.info("Local save   :  "+model);
 	}
 	
 }

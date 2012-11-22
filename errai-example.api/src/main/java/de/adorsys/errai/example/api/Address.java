@@ -1,5 +1,11 @@
 package de.adorsys.errai.example.api;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -7,25 +13,32 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.jboss.errai.databinding.client.api.Bindable;
 
 @Bindable
+@Entity
 public class Address {
+
+	@Id
+	private @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
+	Long id = null;
+	@Version
+	private @Column(name = "version")
+	int version = 0;
 
 	@NotNull
 	@NotBlank
-	@Size(min=3)
+	@Size(min = 3)
 	private String street;
-	
+
 	@NotNull
 	@NotBlank
-	@Size(min=3)
+	@Size(min = 3)
 	private String postcode;
-	
+
 	@NotNull
 	@NotBlank
-	@Size(min=3)
+	@Size(min = 3)
 	private String city;
-	
-	
-	
+
 	public Address() {
 		super();
 	}
