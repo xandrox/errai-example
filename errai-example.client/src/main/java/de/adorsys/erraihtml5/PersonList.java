@@ -5,33 +5,38 @@ import java.util.List;
 
 import javax.inject.Singleton;
 
+import org.jboss.errai.ui.shared.api.annotations.DataField;
+import org.jboss.errai.ui.shared.api.annotations.Templated;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.safehtml.client.SafeHtmlTemplates;
 import com.google.gwt.safehtml.shared.SafeHtml;
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.NoSelectionModel;
 import com.google.gwt.view.client.SelectionChangeEvent;
 
 import de.adorsys.errai.example.api.Person;
 
 @Singleton
+@Templated
 public class PersonList extends Composite {
 
 	static PersonRow PERSON_ROW_TEMPLATE = GWT.create(PersonRow.class);
-	private static PersonListUiBinder UI_BINDER = GWT.create(PersonListUiBinder.class);
-	@UiField
-	CellTable<Person> personsTable;
+//	private static PersonListUiBinder UI_BINDER = GWT.create(PersonListUiBinder.class);
+//	@UiField
+	
+	@DataField
+	CellTable<Person> personsTable = new CellTable<Person>();
+	
 	private List<Person> persons = new ArrayList<Person>();
 	
-	interface PersonListUiBinder extends UiBinder<Widget, PersonList>{
-	}
+//	interface PersonListUiBinder extends UiBinder<Widget, PersonList>{
+//	}
+	
 	public PersonList() {
-		initWidget(UI_BINDER.createAndBindUi(this));
+//		initWidget(UI_BINDER.createAndBindUi(this));
 		initPersonTable(persons);
 	}	
 	public void initPersonTable(List<Person> persons) {
