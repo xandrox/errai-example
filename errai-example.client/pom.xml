@@ -69,7 +69,6 @@
 			<artifactId>persistence-api</artifactId>
 		</dependency>
 		
-		
 	</dependencies>
 	<build>
 		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>

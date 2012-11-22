@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.validation.Valid;
@@ -17,6 +19,10 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.jboss.errai.databinding.client.api.Bindable;
 
 @Bindable
+@NamedQueries( value={
+		@NamedQuery(name="rudePersonSelect",query="SELECT o FROM Person o WHERE o.id = :id"),
+		@NamedQuery(name="flexiblePersonSelect",query="SELECT o FROM Person o WHERE o.firstName LIKE :nameLike OR o.sureName LIKE :nameLike"),
+})
 @Entity
 public class Person {
 
@@ -107,10 +113,14 @@ public class Person {
 		this.address = address;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "Person [firstName=" + firstName + ", sureName=" + sureName
-				+ ", address=" + address + "]";
+		return "Person [id=" + id + ", version=" + version + ", firstName="
+				+ firstName + ", sureName=" + sureName + ", address=" + address
+				+ "]";
 	}
 
 }

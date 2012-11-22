@@ -49,6 +49,36 @@ public class Address {
 		this.postcode = postcode;
 		this.city = city;
 	}
+	
+	
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the version
+	 */
+	public int getVersion() {
+		return version;
+	}
+
+	/**
+	 * @param version the version to set
+	 */
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
 	public String getStreet() {
 		return street;
@@ -74,10 +104,13 @@ public class Address {
 		this.city = city;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "Address [street=" + street + ", postcode=" + postcode
-				+ ", city=" + city + "]";
+		return "Address [id=" + id + ", version=" + version + ", street="
+				+ street + ", postcode=" + postcode + ", city=" + city + "]";
 	}
 
 }

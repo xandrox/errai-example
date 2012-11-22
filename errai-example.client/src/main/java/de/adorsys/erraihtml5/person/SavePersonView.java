@@ -1,5 +1,6 @@
 package de.adorsys.erraihtml5.person;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -76,10 +77,14 @@ public class SavePersonView extends Composite {
 		System.out.println(firstName.getValue());
 		Person model = dataBinder.getModel();
 		model.setAddress(new Address("Raphal- Angel","303","sky"));
-		//it make sens to save it on local first
+		//it make sens to save it on local first :)
 		saveItLocal(model);
 		//and send it to the server.
 		processRestCall(model);
+		
+		//let us find some persons
+		LOG.info("Rude Person Search   :  "+findLocalPersonById(1));
+		LOG.info("Flexible Persons Search  :  "+findLocalPersonByNameLike("boris"));
 		PersonOperation personOperation = new PersonOperation(model, PersonOperationType.CREATE_SUCCESS);
 		personSaved.fire(personOperation);
 	}
@@ -134,4 +139,11 @@ public class SavePersonView extends Composite {
 		LOG.info("Local save   :  "+model);
 	}
 	
+	private Person findLocalPersonById(int id){
+		return this.browserEm.createNamedQuery("rudePersonSelect", Person.class).setParameter("id", id).getResultList().iterator().next();
+	}
+	private List<Person> findLocalPersonByNameLike(String nameLike){
+		if(nameLike == null || "".equals(nameLike)) return new ArrayList<Person>();
+		return this.browserEm.createNamedQuery("flexiblePersonSelect", Person.class).setParameter("nameLike", "%"+nameLike+"%").getResultList();
+	}
 }
