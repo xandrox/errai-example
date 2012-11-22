@@ -68,6 +68,8 @@
 			<groupId>javax.persistence</groupId>
 			<artifactId>persistence-api</artifactId>
 		</dependency>
+		
+		
 	</dependencies>
 	<build>
 		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
@@ -168,7 +170,7 @@
 				<configuration>
 					<warName>${project.artifactId}</warName>
 					<outputFileNameMapping>@{artifactId}@-@{baseVersion}@@{dashClassifier?}@.@{extension}@</outputFileNameMapping>
-					<packagingExcludes>**/javax/**/*.*,**/client/local/**/*.class</packagingExcludes>
+					<packagingExcludes>**/javax/**/*.*,**/client/local/**/*.class,**/persistence.xml</packagingExcludes>
 				</configuration>
 			</plugin>
 			<plugin>
