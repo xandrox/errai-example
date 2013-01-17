@@ -13,20 +13,11 @@ import org.jboss.errai.ui.shared.api.annotations.Templated;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.SimplePanel;
 
-import de.adorsys.erraihtml5.person.PersonSaved;
-import de.adorsys.erraihtml5.person.SavePersonView;
 import de.adorsys.errai.example.api.Person;
+import de.adorsys.erraihtml5.person.SavePersonView;
 
 @Templated
 public class FrameView extends Composite {
-	
-//	@Inject
-//	@DataField
-//	OfferView offer;
-//	
-//	@Inject
-//	@DataField
-//	CalculatorView calculator;
 	
 	@DataField
 	SimplePanel body = new SimplePanel();
@@ -36,6 +27,7 @@ public class FrameView extends Composite {
 	
 	@Inject
 	PersonList personList;
+	
 	@PostConstruct
 	private void displayBody() {
 		body.setWidget(savePerson);

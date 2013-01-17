@@ -6,8 +6,10 @@ import javax.inject.Singleton;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+import org.jboss.errai.enterprise.client.jaxrs.api.RestClient;
 import org.jboss.errai.ioc.client.api.EntryPoint;
 
+import com.google.gwt.safehtml.shared.UriUtils;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.inject.Inject;
 
@@ -19,6 +21,8 @@ public class App {
 	
 	@PostConstruct
 	public void initApp(){
+		RestClient.setApplicationRoot(UriUtils.fromString("http://localhost:8080/errai-example.server/rest").asString());
+		RestClient.setJacksonMarshallingActive(true);
 		RootPanel.get().add(bodyView);
 	}
 	

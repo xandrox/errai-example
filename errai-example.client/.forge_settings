@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+<jboss-as>
+<as7>
+<configured>PROJECT</configured>
+<jboss-home>/Users/sso/Documents/dev/adorsys/jboss-as-7.1.1.Final</jboss-home>
+</as7>
+</jboss-as>
+</configuration>

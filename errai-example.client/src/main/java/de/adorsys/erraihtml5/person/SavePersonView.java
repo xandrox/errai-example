@@ -69,14 +69,16 @@ public class SavePersonView extends Composite {
 	@EventHandler("save")
 	@SinkNative(Event.ONCLICK)
 	public void doNext(Event e) {
-		validations.validate(dataBinder.getModel());
+		if (!validations.validate(dataBinder.getModel())) {
+			return;
+		}
 		
 		System.out.println(firstName.getValue());
 		Person model = dataBinder.getModel();
 		model.setAddress(new Address());
 		System.out.println(model);
-		RestClient.setApplicationRoot(UriUtils.fromString("http://localhost:8080/errai-example.server/rest").asString());
-		RestClient.setJacksonMarshallingActive(true);
+		
+		
 		RemoteCallback<Person> remoteCallback = new RemoteCallback<Person>() {
 
 			@Override
