@@ -6,4 +6,8 @@ deploy/
 target/
 .classpath
 .settings/
+<<<<<<< HEAD
+errai-example.client/src/main/gwt-unitCache/
+=======
 gwt-unitCache/
+>>>>>>> dev-sideDev

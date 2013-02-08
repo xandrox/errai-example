@@ -20,6 +20,7 @@ import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.EventHandler;
 import org.jboss.errai.ui.shared.api.annotations.SinkNative;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
+import org.slf4j.LoggerFactory;
 
 import com.google.gwt.http.client.Response;
 import com.google.gwt.safehtml.shared.UriUtils;
@@ -37,7 +38,7 @@ import de.adorsys.erraihtml5.support.Val;
 
 @Templated
 public class SavePersonView extends Composite {
-	static Logger LOG = Logger.getLogger("SavePersonView.java");
+	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(SavePersonView.class);
 	
 	@Inject
 	@DataField
@@ -60,7 +61,6 @@ public class SavePersonView extends Composite {
 	
 	@Inject
 	Caller<PersonRestResource> personRestCaller ;
-	
 	@PostConstruct
 	private void init() {
 		//dataBinder.setModel(new Person());
@@ -72,7 +72,6 @@ public class SavePersonView extends Composite {
 		if (!validations.validate(dataBinder.getModel())) {
 			return;
 		}
-		
 		System.out.println(firstName.getValue());
 		Person model = dataBinder.getModel();
 		model.setAddress(new Address());
@@ -83,16 +82,17 @@ public class SavePersonView extends Composite {
 
 			@Override
 			public void callback(Person person) {
-				Window.alert("Account From Server :  \n \n"+person);
-				LOG.info("Account From Server  : \n \n"+person);
+				Window.alert("Account From REST Call :  \n \n"+person);
+				LOG.info("Account From REST Server  Call: \n \n"+person);
 			}
 		};
 		RemoteCallback<List<Person>> personListRemoteCallBack = new RemoteCallback<List<Person>>() {
 
+			
 			@Override
 			public void callback(List<Person> response) {
-				Window.alert("Person List From Server    :    \n \n "+response.toString());
-				LOG.info("Person List From Server    :     "+response.toString());
+				Window.alert("Person List From REST Server  Call    :    \n \n "+response.toString());
+				LOG.info("Person List From REST Server  Call :     "+response.toString());
 			}
 		};
 		ResponseCallback responseCallback = new ResponseCallback() {
@@ -120,7 +120,6 @@ public class SavePersonView extends Composite {
 		PersonOperation personOperation = new PersonOperation(model, PersonOperationType.CREATE_SUCCESS);
 		
 		personSaved.fire(personOperation);
-//		validations.validate(model);
 	}
 	
 }

@@ -38,7 +38,7 @@ public class FrameView extends Composite {
 		if(PersonOperationType.CREATE_SUCCESS.equals(po.getPersonOperationType())){
 			List<Person> persons = new ArrayList<Person>();
 			persons.add(po.getSavedPerson());
-			personList.initPersonTable(persons);
+			//personList.initPersonTable(persons);
 			body.setWidget(personList);
 		}else {
 			body.setWidget(savePerson);
